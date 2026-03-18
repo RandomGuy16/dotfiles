@@ -1,0 +1,29 @@
+/* Colores de acento suavizados (Menos saturación, más pastel) */
+@define-color rosewater #deafa5;
+@define-color flamingo #e09e9e;
+@define-color pink #eba6d6;
+@define-color mauve #a680e0;
+@define-color red #d66075;
+@define-color maroon #ea828b;
+@define-color peach #ffab7d;
+@define-color yellow #e3b876;
+@define-color green #82c274;
+@define-color teal #6bbabf;
+@define-color sky #7bcbef;
+@define-color sapphire #7bc4d4;
+@define-color blue #7aa2f7;
+@define-color lavender #9aabbd;
+
+/* Escala de grises y blancos (Originales de Latte) */
+@define-color text #4c4f69;
+@define-color subtext1 #5c5f77;
+@define-color subtext0 #6c6f85;
+@define-color overlay2 #7c7f93;
+@define-color overlay1 #8c8fa1;
+@define-color overlay0 #9ca0b0;
+@define-color surface2 #acb0be;
+@define-color surface1 #bcc0cc;
+@define-color surface0 #ccd0da;
+@define-color base #eff1f5;
+@define-color mantle #e6e9ef;
+@define-color crust #dce0e8;

@@ -1,0 +1,33 @@
+@import "config-base.rasi"
+@import "themes/KooL_style-8.rasi"
+
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "MesloLGMDZ Nerd Font SemiBold 13";
+}
+
+/* overrides fuertes aquí */
+
+/* ---- Window ---- */
+window {
+    width:                       20%;
+}
+
+/* ---- Inputbar ---- */
+listview {
+  columns: 2;
+  lines: 1;
+  scrollbar: false;
+}
+inputbar {
+  enabled: false;
+}
+element {
+  padding: 1em;
+}
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.1;
+}
+

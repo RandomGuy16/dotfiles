@@ -1,0 +1,316 @@
+@import "./themes/mocha.css";
+
+@define-color archblue #1793d1;
+
+* {
+  font-family: "MesloLGMDZ Nerd Font", "NotoSansMono Nerd Font", "Font Awesome 6 Brands", "JetBrains Mono", "Fira Code", "Inconsolata", "Noto Sans", monospace;
+  font-weight: normal;
+  min-height: 0;
+  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+  font-size: 100%;
+  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+}
+
+#waybar {
+  background: @crust;
+  color: @text;
+}
+
+.modules-center,
+.modules-right,
+.modules-left {
+  padding: 4px 0.25rem;
+  margin: 0;
+}
+.modules-left {
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+.modules-right {
+  margin-right: 1rem;
+  padding-right: 1rem;
+}
+
+#power-group,
+#vision-group,
+#right-status-group,
+#shortcuts-group,
+#workspaces-group,
+#hardware-group,
+#hour-group {
+  background-color: @crust;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+}
+#vision-group:hover,
+#right-status-group:hover,
+#shortcuts-group:hover,
+#hardware-group:hover,
+#hour-group:hover {
+  background-color: @base;
+}
+
+
+#power-group *,
+#vision-group *,
+#right-status-group *,
+#shortcuts-group *,
+#workspaces-group *,
+#hardware-group *,
+#hour-group *,
+#mpris-group * {
+  /* background-color: #AAAAAA; */
+  margin: 0 0.35rem;
+  border-radius: 1rem;
+}
+
+#custom-music,
+#tray,
+#custom-lock,
+#power-profiles-daemon {
+  padding: 0 0.5rem;
+}
+
+#power-group {
+  color: @archblue;
+  transition: background 0.2s, color 0.2s;
+}
+#power-group:hover {
+  background-color: @archblue;
+  color: @surface0;
+}
+#custom-power {
+  border-radius: 1rem;
+  padding: 0 1.125rem 0 1rem;
+  font-size: 150%;
+  background-color: inherit;
+  color: inherit;
+}
+
+#custom-eye-lookaway {
+  font-weight: bold;
+  color: @base;
+  padding: 0 1rem;
+  background-color: @blue;
+  transition: background 0.5s;
+}
+#custom-eye-lookaway.work {
+  background-color: @blue;
+}
+#custom-eye-lookaway.break {
+  background-color: @green;
+}
+#idle_inhibitor {
+  margin-right: 0.75rem;
+}
+
+
+#custom-launcher,
+#custom-browser,
+#custom-files,
+#custom-terminal,
+#custom-player {
+  padding: 0 0.75rem 0 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+#custom-files {
+  padding-right: 0.7rem;
+}
+#custom-terminal {
+  padding-right: 0.35rem;
+}
+#custom-browser {
+  padding-right: 0.75rem;
+}
+#custom-launcher:hover {
+  background: #7c3aed; /* violet */
+  color: #fff;
+}
+#custom-browser:hover {
+  background: #4285f4; /* Chrome blue */
+  color: #fff;
+}
+#custom-files:hover {
+  background: #4a90d9; /* Nautilus blue */
+  color: #fff;
+}
+#custom-terminal:hover {
+  background: #22223b; /* dark blue */
+  color: #f2e9e4;
+}
+#custom-player:hover {
+  background: #1db954; /* Spotify green */
+  color: #fff;
+}
+
+
+#tray {
+  border-radius: 1rem;
+}
+
+
+/* #workspaces button { */
+/*   margin: 0; */
+/*   color: @lavender; */
+/*   border-radius: 1rem; */
+/*   background-color: transparent; */
+/*   transition: background 0.2s, color 0.2s; */
+/* } */
+/**/
+/* #workspaces button.active { */
+/*   color: @sky; */
+/*   background-color: shade(@text, 0.8); */
+/*   border-radius: 1rem; */
+/* } */
+/* #workspaces button:hover { */
+/*   color: @sapphire; */
+/* } */
+
+button {
+  background: none;
+  border: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+#workspaces-group {
+  background-color: transparent;
+  padding: 0;
+}
+#workspaces {
+  background: linear-gradient(90deg, @mauve 0%, @blue 25%, @sapphire 50%, @teal 75%, @green 100%);
+  border-radius: 1rem;
+  margin: 0 1.5rem;
+  padding: 0.25rem;
+  box-shadow: 0 4px 12px rgba(203, 166, 247, 0.3);
+}
+
+#workspaces button {
+  margin: 0;
+  color: @base;
+  border-radius: 1rem;
+  padding: 0 0.5rem;
+  margin: 0 0.15rem;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  background: rgba(30, 30, 46, 0.7);
+  border: 2px solid transparent;
+  /* backdrop-filter: blur(4px); */
+}
+
+#workspaces button:hover {
+  color: @text;
+  background: linear-gradient(135deg, @pink 0%, @mauve 50%, @lavender 100%);
+  border-color: @rosewater;
+  /* transform: translateY(-2px) scale(1.05); */
+  box-shadow: 0 6px 16px rgba(245, 194, 231, 0.6);
+}
+#workspaces button.active, #workspaces button.empty.active {
+  color: @base;
+  background: linear-gradient(135deg, @peach 0%, @yellow 50%, @green 100%);
+  border-color: @yellow;
+  box-shadow: 0 4px 12px rgba(250, 179, 135, 0.7);
+  font-weight: 900;
+}
+#workspaces button.active:hover {
+  color: @crust;
+  background: linear-gradient(135deg, @red 0%, @peach 50%, @yellow 100%);
+  border-color: @flamingo;
+  /* transform: translateY(-2px) scale(1.08); */
+  box-shadow: 0 8px 20px rgba(243, 139, 168, 0.8);
+}
+#workspaces button.empty {
+  color: @overlay0;
+  background: rgba(30, 30, 46, 0.3);
+  border: 2px solid transparent;
+  opacity: 0.5;
+  /* transform: scale(0.9); */
+}
+#workspaces button.empty:hover {
+  color: @subtext1;
+  background: linear-gradient(135deg, @surface2 0%, @surface1 100%);
+  border-color: @overlay1;
+  opacity: 0.8;
+  /* transform: translateY(-2px) scale(0.95); */
+  box-shadow: 0 4px 10px rgba(108, 112, 134, 0.4);
+}
+
+
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
+}
+
+
+#network {
+  padding-right: 0.25rem;
+  padding-left: 0.5rem;
+  color: @blue;
+}
+#network.disconnected {
+  color: @red;
+}
+#network.disabled {
+  color: @surface0;
+}
+#bluetooth {
+  color: @blue;
+  padding-right: 0.5rem;
+}
+
+
+#pulseaudio {
+  color: @mauve;
+}
+#pulseaudio.speakers.muted {
+  color: @overlay1;
+}
+#pulseaudio.microphone.source-muted {
+  color: @overlay1;
+}
+
+
+#battery {
+  color: @blue;
+}
+#battery.good {
+  color: @green;
+}
+#battery.charging {
+  color: @green;
+}
+#battery.warning:not(.charging) {
+  color: @yellow;
+}
+#battery.critical:not(.charging) {
+  color: @red;
+}
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+#power-profiles-daemon.balanced {
+  color: @blue;
+}
+#power-profiles-daemon.performance {
+  color: @peach;
+}
+
+#clock {
+  color: @text;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+
+#backlight {
+  color: @yellow;
+}
+#language {
+  border-radius: 1rem 0px 0px 1rem;
+  color: @maroon;
+}
+
+#custom-lock {
+  color: @lavender;
+}
+

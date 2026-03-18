@@ -1,0 +1,26 @@
+@import "config-base.rasi"
+@import "themes/KooL_style-8.rasi"
+
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "MesloLGMDZ Nerd Font SemiBold 16";
+}
+
+configuration {
+    display-drun:               "󰐦  Powermenu";
+}
+/* overrides fuertes aquí */
+listview {
+  columns: 6;
+  lines: 1;
+  scrollbar: false;
+}
+element {
+  padding: 1em;
+}
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.1;
+}
+

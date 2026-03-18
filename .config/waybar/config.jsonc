@@ -1,0 +1,410 @@
+{
+    "layer": "top",
+    // "height": 32,
+    "spacing": 8,
+    "position": "bottom",
+    "modules-left": [
+        "group/power-group",
+        "group/vision-group",
+        "group/hardware-group",
+        // "group/shortcuts-group",
+        "tray"
+    ],
+    "modules-center": [
+        "group/workspaces-group"
+    ],
+    "modules-right": [
+        "group/mpris-group",
+        "group/right-status-group",
+        //"group/network-group",
+        //"group/battery-group",
+        "group/hour-group"
+    ],
+    "group/power-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/power"
+        ]
+    },
+    "custom/power": {
+        "tooltip": false,
+        "on-click": "exec ~/.config/rofi/rofi_powermenu.sh",
+        "format": "\ue732"
+    },
+    "group/vision-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "backlight",
+            "custom/eye-lookaway",
+            "idle_inhibitor"
+        ]
+    },
+    "backlight": {
+        "format": "{icon}",
+        "tooltip-format": "{icon} {percent}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/eye-lookaway": {
+        "format": "{text}",
+        "exec": "~/.config/waybar/scripts/eye-lookaway.sh",
+        "on-click": "~/.config/waybar/scripts/eye-lookaway-restart.sh",
+        "return-type": "json"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "group/hardware-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "disk",
+            "temperature"
+        ]
+    },
+    "cpu": {
+        "format": "<span> </span>{usage}%",
+        "interval": 1,
+        "min-length": 5,
+        "format-alt-click": "click",
+        "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
+        "format-icons": [
+            "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
+        ],
+        "on-click-right": "kitty -e btop"
+    },
+    "memory": {
+        "interval": 10,
+        "format": "<i> </i>{used:0.1f}G",
+        "format-alt": "<i> </i>{percentage}%",
+        "format-alt-click": "click",
+        "tooltip": true,
+        "on-click-right": "kitty -e btop"
+    },
+    "disk": {
+        "interval": 30,
+        "path": "/",
+        // "format": "󰋊 {percentage_used}%",
+        "format": "<i>󰋊</i> {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "<span>{icon}</span>{temperatureC}°C",
+        "format-icons": [" ", " ", " "]
+    },
+    "group/shortcuts-group": {
+        "orientation": "horizontal",
+        "modules": [
+            // "custom/launcher",
+            "custom/files",
+            "custom/browser",
+            "custom/terminal",
+            "custom/player"
+        ]
+    },
+    "custom/browser": {
+        "format": "",
+        "on-click": "exec google-chrome-stable %U",
+        "tooltip-format": "Google chrome"
+    },
+    "custom/terminal": {
+        "format": " ",
+        "on-click": "exec kitty",
+        "tooltip-format": "Terminal"
+    },
+    "custom/files": {
+        "format": "󰉋",
+        "on-click": "exec nautilus",
+        "tooltip-format": "Files"
+    },
+    "custom/player": {
+        "format": "",
+        "on-click": "exec spotify-launcher",
+        "tooltip-format": "Spotify"
+    },
+    "custom/launcher": {
+        "format": "",
+        "on-click": "exec ~/.config/hypr/scripts/appLauncher.sh",
+        "tooltip-format": "Launcher"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "group/workspaces-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "hyprland/workspaces"
+        ]
+    },
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+             "*": 5, // 5 workspaces by default on every monitor
+             "HDMI-A-1": 5 // but only three on HDMI-A-1
+        }
+    },
+    "group/right-status-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio#speakers",
+            "pulseaudio#microphone",
+            "network",
+            "bluetooth",
+            "battery",
+            "power-profiles-daemon"
+        ]
+    },
+    "custom/music": {
+        "format": " {} 󰎇",
+        "escape": true,
+        "interval": 5,
+        "tooltip": false,
+        "exec": "playerctl metadata --format='{{ title }}'",
+        "on-click": "playerctl play-pause",
+        "max-length": 50
+    },
+    "pulseaudio#speakers": {
+        "format": "{icon}",
+        "format-muted": " ",
+        "format-icons": {
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip-format": "{volume}% {icon} {format_source}"
+    },
+    "pulseaudio#microphone": {
+        "type": "microphone",
+        "format": "{format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
+        "scroll-step": 5,
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "tooltip-format": "{volume}% {icon} {format_source}"
+    },
+    "pulseaudio": {
+        "tooltip-format": "{volume}% {icon} {format_source}"
+    },
+    "group/network-group": {
+        "orientation": "horizontal",
+        "modules": [
+        ]
+    },
+    "network": {
+        "format": "{icon}",
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰌘",
+        "format-disconnected": "󰌙",
+        "tooltip-format": "{ifname} {ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+        "format-linked": "󰈁 {ifname} (No IP)",
+        "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname} 󰌘",
+        "tooltip-format-disconnected": "󰌙 Disconnected",
+        "max-length": 30,
+        "format-icons": [
+            "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+        ],
+        "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nmtui"
+    },
+    "network#speed": {
+        "interval": 1,
+        "format": "{ifname}",
+        "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-ethernet": "󰌘  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-disconnected": "󰌙",
+        "tooltip-format": "{ipaddr}",
+        "format-linked": "󰈁 {ifname} (No IP)",
+        "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname} 󰌘",
+        "tooltip-format-disconnected": "󰌙 Disconnected",
+        "min-length": 24,
+        "max-length": 24,
+        "format-icons": [
+            "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+        ]
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-connected": "",
+        "format-disabled": "󰂳",
+        "format-connected-battery": " {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{status}\t{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\t{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "kitty -e bluetui",
+        "on-click-right": "exec bluedevil-wizard"
+    },
+
+    "group/mpris-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "mpris",
+            "mpris#rewind-5-secs",
+            "mpris#previous-button",
+            "mpris#play-button",
+            "mpris#next-button",
+            "mpris#forward-5-secs",
+        ]
+    },
+    "mpris": {
+        "format": " No song currently playing",
+        "format-playing": "{player_icon} {title}",
+        "format-paused": "{player_icon} {title}",
+        "format-stopped": " No song currently playing",
+        "on-click": "playerctl play-pause",
+        "scroll-step": 5.0,
+        "on-scroll-up": "$HOME/.config/hypr/scripts/volume.sh --inc",
+        "on-scroll-down": "$HOME/.config/hypr/scripts/volume.sh --dec",
+        "smooth-scrolling-threshold": 1,
+        "tooltip": true,
+        "tooltip-format": "{status_icon} {dynamic}",
+        "player-icons": {
+            "spotify": "",
+            "chromium": "",
+            "default": "",
+            "firefox": "",
+            "kdeconnect": "",
+            "mopidy": "",
+            "mpv": "󰐹",
+            "vlc": "󰕼"
+        },
+        "status-icons": {
+            "paused": "",
+            "playing": "",
+            "stopped": ""
+        },
+        "dynamic-order": ["artist", "title"],
+        "ignored-players": ["firefox", "zen"],
+        "max-length": 40
+    },
+    "mpris#play-button": {
+        "format": "{status_icon}",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "status-icons": {
+            "paused": "",
+            "playing": "",
+            "stopped": ""
+        },
+    },
+    "mpris#next-button": {
+        "format": "󰒭",
+        "on-click": "playerctl next",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+    "mpris#previous-button": {
+        "format": "󰒮",
+        "on-click": "playerctl previous",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+    "mpris#forward-5-secs": {
+        "format": "󱇸",
+        "on-click": "playerctl position 5+",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+    "mpris#rewind-5-secs": {
+        "format": "󱇹",
+        "on-click": "playerctl position 5-",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+    "group/battery-group": {
+        "orientation": "horizontal",
+        "modules": [
+        ]
+    },
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 40,
+            "critical": 20
+        },
+        "format": "{icon}",
+	    "format-charging": "",
+	    "format-plugged": "󱘖",
+        "format-alt-click": "click",
+	    "format-full": "{icon} Full",
+	    "format-alt": "{icon} {time}",
+        "format-time": "{H}h {M}min",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip-format": "{capacity}% {timeTo}"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "group/hour-group": {
+        "orientation": "horizontal",
+        "modules": [
+            "hyprland/language",
+            "clock"
+        ]
+    },
+    "hyprland/language": {
+        "format": "{short} {variant}",
+        "on-click": "hyprctl switchxkblayout all next"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "󰃭 {:%d/%m/%Y}",
+        "format": " {:%H:%M}"
+    }
+    // "custom/lock": {
+    //     "tooltip": false,
+    //     "on-click": "hyprlock",
+    //     "format": ""
+    // }
+}
